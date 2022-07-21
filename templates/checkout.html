@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="https://i.pinimg.com/favicons/646a98600556e66fc882931fb511274bb8c961f93caa913e1ca12d19.png?899f6712a5a831f6f200ccca42cbe839">
+    <title>Checkout | Agualogic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style type="text/css">
+        #cuadrados {
+            outline: 1px solid #d0d0d0;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="mx-5 row">
+                <div class="col-6">
+                    <a class="text-decoration-none" href="/">
+                        <img class="img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2021/04/logo_reducido.png" alt=""
+                            srcset="">
+                    </a>
+                </div>
+                <div class="py-2 col-6 text-end">
+                    <a href="https://api.whatsapp.com/send/?phone=573022868697&text&app_absent=0">
+                        <img class="px-1 img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-2.png" alt="" width="40"
+                            height="40" srcset="">
+                    </a>
+
+                    <a href="https://www.instagram.com/accounts/login/?next=/agualogicfiltro/">
+                        <img class="px-1 img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-1.png" alt="" width="40"
+                            height="40" srcset="">
+                    </a>
+                    <a href="https://www.facebook.com/Agualogicfiltro/">
+                        <img class="px-1 img-fluid" src="https://www.agualogic.com/wp-content/uploads/2019/07/icono.png"
+                            alt="" width="40" height="40" srcset="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background-color: #eee;">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 py-5">
+                    <label for="exampleFormControlInput1" class="form-label">
+                        <h6>Cedula/DNI/Pasaporte*</h6>
+                    </label>
+                    <input type="documento" class="form-control" id="exampleFormControlInput1"
+                        placeholder="N° de Documento">
+                    <div class="row py-3">
+                        <div class="col-6">
+                            <label for="exampleFormControlInput1" class="form-label">
+                                <h6>Nombre*</h6>
+                            </label>
+                            <input type="#" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Ej: My name is di-di-di-diego">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleFormControlInput1" class="form-label">
+                                <h6>Apellido*</h6>
+                            </label>
+                            <input type="#" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Ej: Rodriguez">
+                        </div>
+                    </div>
+                    <div class="py-1">
+                        <label for="exampleFormControlInput1" class="form-label">
+                            <h6>Nombre de compañia(opcional)*</h6>
+                        </label>
+                        <input type="documento" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Ej: El Burro alegre">
+                    </div>
+                    <div class="py-1">
+                        <label for="exampleFormControlInput1" class="form-label">
+                            <h6>Dirección de Calle*</h6>
+                        </label>
+                        <input type="documento" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Calle - Altura">
+                    </div>
+                    <div class="py-1">
+                        <label for="exampleFormControlInput1" class="form-label">
+                            <h6>Estado*</h6>
+                        </label>
+                        <input type="documento" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Ej: Sinaloa">
+                    </div>
+                    <div class="py-1">
+                        <label for="exampleFormControlInput1" class="form-label">
+                            <h6>País*</h6>
+                        </label>
+                        <input type="documento" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Ej: México">
+                        <div class="py-1">
+                            <label for="exampleFormControlInput1" class="form-label">
+                                <h6>Móvil*</h6>
+                            </label>
+                            <input type="documento" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Ej: cinco cinco cincorriente">
+                        </div>
+                    </div>
+                    <div class="py-1">
+                        <label for="exampleFormControlInput1" class="form-label">
+                            <h6>Email*</h6>
+                        </label>
+                        <input type="documento" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Ej: elrincóndelvago@gmail.com">
+                    </div>
+                </div>
+
+                <div class="col-6 py-5">
+                    {% for x in cartproducts %}
+                    <div class="row">
+                        <div class="col-2">
+                            <img style="border-radius: 25px;" class="img-fluid" src="{{x['img']}}" alt="" srcset="">
+                        </div>
+                        <div class="col-10">
+                            <small class="text-secondary">{{x['parrafo']}}</small>
+                            <h6>{{x['price']}} X 1</h6>
+                            <h6>Funciona la vaina</h6>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="row">
+                        <div id="cuadrados" class="col-6 py-3">
+                            <h6>Subtotal: </h6>
+                            <h6>Shipping: </h6>
+                            <h6>Total: </h6>
+                        </div>
+                        <div id="cuadrados" class="col-6 py-3">
+                            <h6>${{subtotal}}</h6>
+                            <h6>Diez días Hábiles</h6>
+                            <h6>${{total}}</h6>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            <h5 style="color: #607d8b ;"> I have read and agree to the website <a href="#">terms and
+                                    conditions</a>*
+                            </h5>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col d-grid gap-1">
+                            <button style="background-color: #607d8b ;" type="button" class="btn btn-secondary btn-">
+                                <h4>Ir a Pagar</h4>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="text-center py-4">
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Inicio</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Nuestros Filtros</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Q&A</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Conócenos</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Contacto</a>
+            </div>
+            <div class="row-12">
+                <div class="col text-center">
+                    <p>(+57) 350 446 6093</p>
+                    <p>(+57) 300 258 9820</p>
+                    <p>(+57) 320 444 1550</p>
+                </div>
+                <div class="col text-center">
+                    <small>© 2022 Agualogic</small>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

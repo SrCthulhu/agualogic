@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="https://i.pinimg.com/favicons/646a98600556e66fc882931fb511274bb8c961f93caa913e1ca12d19.png?899f6712a5a831f6f200ccca42cbe839">
+    <title>Carrito | Agualogic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="mx-5 row">
+                <div class="col-6">
+                    <a class="text-decoration-none" href="/">
+                        <img class="img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2021/04/logo_reducido.png" alt=""
+                            srcset="">
+                    </a>
+                </div>
+                <div class="py-2 col-6 text-end">
+                    <a href="https://api.whatsapp.com/send/?phone=573022868697&text&app_absent=0">
+                        <img class="px-1 img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-2.png" alt="" width="40"
+                            height="40" srcset="">
+                    </a>
+
+                    <a href="https://www.instagram.com/accounts/login/?next=/agualogicfiltro/">
+                        <img class="px-1 img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-1.png" alt="" width="40"
+                            height="40" srcset="">
+                    </a>
+                    <a href="https://www.facebook.com/Agualogicfiltro/">
+                        <img class="px-1 img-fluid" src="https://www.agualogic.com/wp-content/uploads/2019/07/icono.png"
+                            alt="" width="40" height="40" srcset="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background-color: #eee;">
+        <div class="container">
+            <div class="row">
+
+                {% for p in productsfiltros %}
+
+                <div class="col-6 py-5 text-end">
+                    <img src="{{p['img']}}" width="489" height="429.2" alt="" srcset="">
+
+                    <div class="row">
+                        <div class="col-2 ">
+                            <img class="img-fluid" src="{{p['img_detail_1']}}" alt="" srcset="">
+                        </div>
+                        <div class="col-2">
+                            <img class="img-fluid" src="{{p['img_detail_2']}}" alt="" srcset="">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6 py-5">
+                    <h1 style="color: #666;">{{p['parrafo']}}</h1>
+                    <h4>{{p['price']}}</h4>
+                    <div class="row py-3">
+                        <div class="col-6 d-grid gap-2">
+                            <!-- d-grid gap-2 sirve para hacer un botón con bootstrap que sea largo ocupando toda la zona-->
+                            <button type="button" class="btn btn-outline-dark">- 1 +</button>
+                        </div>
+                        <div class="col-6 d-grid gap-2">
+
+                            <a style="background-color: #607d8b ;" href="/add/{{p['_id']}}"
+                                class="btn btn-primary">Comprar</a>
+                            <!-- _id se usa para buscar y acceder a la base de datos exclusivamente-->
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-success">Envío gratis a Buenos Aires</button>
+                    </div>
+
+                    <p style="color:  #607d8b;">Envío incluido solo para filtros en la ciudad de Buenos Aires/Argentina.
+                        Contáctenos a través de nuestros canales de servicio al cliente para conocer el valor de su
+                        envío fuera de CABA.
+                    </p>
+
+                    <p>
+                        Fabricado en acero al carbono revestido con una cubierta vítrea en color (interior/exterior).
+                        Incluye: Unidad de almacenamiento peltre, tapa, filtro cerámico, grifo dispensador en acero
+                        inoxidable.
+                        Capacidad de 20 litros, incluyendo volumen del filtro cerámico.
+                        Dimensiones aproximadas: 42 cm Alto / 32,5 cm diámetro.
+                        Peso: 7 kilogramos aproximadamente.
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="px-5">También te puede interesar</h4>
+                </div>
+                {% for m in masvendidos %}
+                <div class="col-3 text-center">
+                    <a class="text-decoration-none" href="/producto/detalle/{{m['_id']}}">
+                        <img style="border-radius: 20px;" src="{{m['img']}}" width="209.78" height="184.13" alt=""
+                            srcset="">
+                        <h4>{{m['price']}}</h4>
+                        <small class="text-secondary">{{m['parrafo']}}</small>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="py-5">
+                <button type="button" class="btn btn-secondary btn-lg">Ver todos nuestros productos</button>
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="text-center py-4">
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Inicio</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Nuestros Filtros</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Q&A</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Conócenos</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Contacto</a>
+            </div>
+            <div class="row-12">
+                <div class="col text-center">
+                    <p>(+57) 350 446 6093</p>
+                    <p>(+57) 300 258 9820</p>
+                    <p>(+57) 320 444 1550</p>
+                </div>
+                <div class="col text-center">
+                    <small>© 2022 Agualogic</small>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
