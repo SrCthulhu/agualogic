@@ -59,11 +59,12 @@ def add_product_to_cart(id):
 
     user = session.get('id')
 
-    nuevo = db.cart()
+    nuevo = {}
     nuevo['parrafo'] = product['parrafo']
     nuevo['img'] = product['img']
     nuevo['price'] = product['price']
 
+    # ponemos el id al usuario con sus productos elegidos.
     nuevo['user_id'] = user
 
     db.cart.insert_one(nuevo)
@@ -76,7 +77,10 @@ def cart_view():
     if not session.get('id'):
         return redirect('/')
 
-    productsfiltros = list(db.cart.find())
+    # llamamos la variable global. paso 1 necesitas user con el id
+    user = session.get('id')
+    # con el user_id:user filtramos por el id de usuario los productos cuando son agregados al carrito.
+    productsfiltros = list(db.cart.find({'user_id': user}))  # paso 2
     masvendidos = list(db.productsfiltros.find({'top': "1"}))
     return render_template(
         "cart_detalle.html", productsfiltros=productsfiltros, masvendidos=masvendidos)
@@ -84,7 +88,8 @@ def cart_view():
 
 @app.route("/checkout")
 def check_view():
-    cartproducts = list(db.cart.find())
+    user = session.get('id')
+    cartproducts = list(db.cart.find({'user_id': user}))
     # operación para calcular subtotales, sumar distintos valores.
     subtotal = 0
     for p in cartproducts:
