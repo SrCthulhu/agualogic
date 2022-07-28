@@ -81,10 +81,10 @@ def cart_view():
     user = session.get('id')
     # con el user_id:user filtramos por el id de usuario los productos cuando son agregados al carrito.
     productsfiltros = list(db.cart.find({'user_id': user}))  # paso 2
-    borrarproducto = db.cart.deleteOne({'_id': ObjectId(id)})
+    actualizarproducto = db.productsfiltros.updateOne({price: 605.000.0}, {$set: {newprice: 1}})
     masvendidos = list(db.productsfiltros.find({'top': "1"}))
     return render_template(
-        "cart_detalle.html", productsfiltros=productsfiltros, masvendidos=masvendidos, borrarproducto=borrarproducto)
+        "cart_detalle.html", productsfiltros=productsfiltros, masvendidos=masvendidos, actualizarproducto=actualizarproducto)
 
 
 @app.route("/checkout")
