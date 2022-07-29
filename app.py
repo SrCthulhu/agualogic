@@ -58,11 +58,26 @@ def add_product_to_cart(id):
         return redirect('/')
 
     user = session.get('id')
-
+ # paso 1 (agregar productos al carrito sin que se repitan) buscar en el carrito mismo nombre 'parrafo' de la colección pasada.
+    cartproduct = db.cart.find_one(
+        {'parrafo': product['parrafo'], 'user_id': user})  # busca por el filtro parrafo y tambien que sea el usuario que corresponde con 'user_id': user
+#################################################
+    if cartproduct:  # paso 2  #si el find_one consiguio devuelve un diccionario y es true, entonces si no consiguio nada lo devuelve como vacio y el if es false
+        db.cart.update_one(
+            # forma alternativa {'_id': ObjectId(cartproduct['_id'])} 👇 aqui estamos actualizando el mismo id del producto del carrito.
+            {'parrafo': product['parrafo'], 'user_id': user},
+            {'$set':
+                # el producto que ya existe en el carrito nos devuelve la cantidad y le suma uno
+                {'cantidad': cartproduct['cantidad'] + 1}
+             }
+        )
+        return redirect('/cart')
+        ####################################
     nuevo = {}
     nuevo['parrafo'] = product['parrafo']
     nuevo['img'] = product['img']
     nuevo['price'] = product['price']
+    nuevo['cantidad'] = 1  # paso 3
 
     # ponemos el id al usuario con sus productos elegidos.
     nuevo['user_id'] = user
@@ -81,15 +96,9 @@ def cart_view():
     user = session.get('id')
     # con el user_id:user filtramos por el id de usuario los productos cuando son agregados al carrito.
     productsfiltros = list(db.cart.find({'user_id': user}))  # paso 2
-    actualizarproducto = db.productsfiltros.updateOne(
-        {parrafo: "Unidad Vidrio Mate - Edición Especial"},
-        {$set:
-         {agregado: "funciona el update"}
-         }
-    )
     masvendidos = list(db.productsfiltros.find({'top': "1"}))
     return render_template(
-        "cart_detalle.html", productsfiltros=productsfiltros, masvendidos=masvendidos, actualizarproducto=actualizarproducto)
+        "cart_detalle.html", productsfiltros=productsfiltros, masvendidos=masvendidos)
 
 
 @app.route("/checkout")
@@ -110,3 +119,10 @@ def check_view():
                            subtotal=subtotal,
                            total=total,
                            )
+
+
+@app.route("/remove/<id>")
+def remove_to_cart(id):
+    # borra de la colección del carrito.
+    db.cart.delete_one({'_id': ObjectId(id)})
+    return redirect('/cart')

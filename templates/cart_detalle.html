@@ -51,10 +51,14 @@
                     <div class="row pt-3">
                         <div class="col-3">
                             <img style="border-radius: 20px;" class="img-fluid" src="{{a['img']}}" alt="" srcset="">
+
                         </div>
-                        <div class="col-9">
+                        <div class="col-6">
                             <h6>{{a['parrafo']}}</h6>
-                            <h6>{{a['price']}} X 1</h6>
+                            <h6>{{a['price']}} X {{a['cantidad']}}</h6>
+                        </div>
+                        <div class="col-3">
+                            <a href="/remove/{{a['_id']}}" type="button" class="btn btn-danger">X</a>
                         </div>
                     </div>
                     {% endfor %}
@@ -67,8 +71,6 @@
                     <div class="d-grid gap-2">
                         <a href="/checkout" style="background-color: #607d8b ;" type="button"
                             class="btn btn-secondary">Continuar</a>
-
-                        <a href="/checkout" type="button" class="btn btn-danger">Borrar producto</a>
 
                         <a href="/products" style="background-color: #ccc ;" type="button" class="btn btn-secondary">Ver
                             todos nuestros productos</a>
