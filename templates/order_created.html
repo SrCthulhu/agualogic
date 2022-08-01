@@ -49,7 +49,7 @@
             <div class="row py-5">
                 <div class="col-3">
                     <h6>ORDER NUMBER: |</h6>
-                    <small><strong>{{orderId}}</strong></small>
+                    <small><strong>{{pedido['_id']}}</strong></small>
                 </div>
                 <div class="col-3">
                     <h6>DATE: |</h6>
@@ -62,6 +62,14 @@
                 <div class="col-3">
                     <h6>PAYMENT METHOD: |</h6>
                     <small><strong>PayU Latinoamérica</strong></small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul>
+                        <li>Cliente: {{pedido['client']['first_name']}} {{pedido['client']['last_name']}}</li>
+                        <li>Documento: {{pedido['client']['document']}}</li>
+                    </ul>
                 </div>
             </div>
             <div class="row py-4">

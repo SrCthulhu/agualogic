@@ -167,4 +167,11 @@ def order_created_view():
     # borrar todos los productos del carrito DEL USUARIO
     db.cart.delete_many({'user_id': user})
 
-    return render_template("order_created.html", pedido=pedido, orderId=orderId)
+    return redirect('/order/' + str(orderId))
+
+
+@app.route("/order/<id>")
+def order_view(id):
+    pedido = db.orders.find_one({'_id': ObjectId(id)})
+
+    return render_template("order_created.html", pedido=pedido)
