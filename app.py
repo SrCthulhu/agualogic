@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, session
+from flask import Flask, render_template, redirect, session, request
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.secret_key = ".."
 # DATABASE CONFIGURATION
 uri = os.environ.get('MONGO_DB_URI', "mongodb://127.0.0.1")
+print(uri)
 client = MongoClient(uri)
 db = client.agualogic
 #############################
@@ -82,7 +83,7 @@ def add_product_to_cart(id):
     # ponemos el id al usuario con sus productos elegidos.
     nuevo['user_id'] = user
 
-    db.cart.insert_one(nuevo)
+    db.cart.insert_one(nuevo)  # creamos documentos en la base de datos.
 
     return redirect('/cart')  # redirect me envia a la ruta de cart_view:
 
@@ -110,7 +111,7 @@ def check_view():
     for p in cartproducts:
         # este codigo de .replace sirve para remplazar el string $ por un espacio en blanco '' y se pueda hacer la suma y tambien la , y el . al final.
         price = p['price'].replace('$', '').replace(',', '').replace('.00', '')
-        subtotal = subtotal + int(price)
+        subtotal = subtotal + (int(price) * p['cantidad'])
     # operación para sumar iva al total en este caso 19% de iva.
     total = subtotal * 1.19
 
@@ -126,3 +127,44 @@ def remove_to_cart(id):
     # borra de la colección del carrito.
     db.cart.delete_one({'_id': ObjectId(id)})
     return redirect('/cart')
+
+
+@app.route("/order/create")
+def order_created_view():
+    user = session.get('id')
+    cartproducts = list(db.cart.find({'user_id': user}))
+
+    # nombre del input documento del checkout.html
+    document = request.args.get('document')
+    firstName = request.args.get('first_name')
+    lastName = request.args.get('last_name')
+    companyName = request.args.get('company_name')
+    address = request.args.get('address')
+    state = request.args.get('state')
+    country = request.args.get('country')
+    phone = request.args.get('phone')
+    email = request.args.get('email')
+    total = request.args.get('total')
+    # pedido es un diccionario que tiene el diccionario client dentro.
+    pedido = {}
+    pedido['client'] = {
+        'document': document,
+        'first_name': firstName,
+        'last_name': lastName,
+        'company_name': companyName,
+        'address': address,
+        'state': state,
+        'country': country,
+        'phone': phone,
+        'email': email
+    }
+    pedido['user_id'] = user
+    pedido['cart'] = cartproducts
+    pedido['total'] = total
+    orderCreated = db.orders.insert_one(pedido)
+    orderId = orderCreated.inserted_id
+
+    # borrar todos los productos del carrito DEL USUARIO
+    db.cart.delete_many({'user_id': user})
+
+    return render_template("order_created.html", pedido=pedido, orderId=orderId)

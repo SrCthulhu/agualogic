@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="https://i.pinimg.com/favicons/646a98600556e66fc882931fb511274bb8c961f93caa913e1ca12d19.png?899f6712a5a831f6f200ccca42cbe839">
+    <title>Checkout | Agualogic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="mx-5 row">
+                <div class="col-6">
+                    <a class="text-decoration-none" href="/">
+                        <img class="img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2021/04/logo_reducido.png" alt=""
+                            srcset="">
+                    </a>
+                </div>
+                <div class="py-2 col-6 text-end">
+                    <a href="https://api.whatsapp.com/send/?phone=573022868697&text&app_absent=0">
+                        <img class="px-1 img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-2.png" alt="" width="40"
+                            height="40" srcset="">
+                    </a>
+
+                    <a href="https://www.instagram.com/accounts/login/?next=/agualogicfiltro/">
+                        <img class="px-1 img-fluid"
+                            src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-1.png" alt="" width="40"
+                            height="40" srcset="">
+                    </a>
+                    <a href="https://www.facebook.com/Agualogicfiltro/">
+                        <img class="px-1 img-fluid" src="https://www.agualogic.com/wp-content/uploads/2019/07/icono.png"
+                            alt="" width="40" height="40" srcset="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background-color: #eee;">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-3">
+                    <h6>ORDER NUMBER: |</h6>
+                    <small><strong>{{orderId}}</strong></small>
+                </div>
+                <div class="col-3">
+                    <h6>DATE: |</h6>
+                    <small><strong>1 Agosto, 2022</strong></small>
+                </div>
+                <div class="col-3">
+                    <h6>TOTAL: |</h6>
+                    <small><strong>{{pedido['total']}}</strong></small>
+                </div>
+                <div class="col-3">
+                    <h6>PAYMENT METHOD: |</h6>
+                    <small><strong>PayU Latinoamérica</strong></small>
+                </div>
+            </div>
+            <div class="row py-4">
+                <div class="col-12">
+                    {% for x in pedido['cart'] %}
+                    <div class="row">
+                        <div class="col-2">
+                            <img style="border-radius: 25px;" class="img-fluid" src="{{x['img']}}" alt="" srcset="">
+                        </div>
+                        <div class="col-10">
+                            <small class="text-secondary">{{x['parrafo']}}</small>
+                            <h6>{{x['price']}} X {{x['cantidad']}}</h6>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h6>Gracias por su pedido, de clic en el botón que aparece para continuar el pago con PayU Latam.
+                    </h6>
+                    <button type="submit" class="btn btn-outline-dark btn-">
+                        Pagar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="text-center py-4">
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Inicio</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Nuestros Filtros</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Q&A</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Conócenos</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Contacto</a>
+            </div>
+            <div class="row-12">
+                <div class="col text-center">
+                    <p>(+57) 350 446 6093</p>
+                    <p>(+57) 300 258 9820</p>
+                    <p>(+57) 320 444 1550</p>
+                </div>
+                <div class="col text-center">
+                    <small>© 2022 Agualogic</small>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

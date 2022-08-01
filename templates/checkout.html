@@ -49,28 +49,29 @@
         </div>
     </section>
     <section style="background-color: #eee;">
-        <div class="container">
+        <form class="container" action="/order/create">
+            <input name="total" value="{{total}}" type="hidden" />
             <div class="row">
                 <div class="col-6 py-5">
                     <label for="exampleFormControlInput1" class="form-label">
                         <h6>Cedula/DNI/Pasaporte*</h6>
                     </label>
                     <input type="documento" class="form-control" id="exampleFormControlInput1"
-                        placeholder="N° de Documento">
+                        placeholder="N° de Documento" name="document">
                     <div class="row py-3">
                         <div class="col-6">
                             <label for="exampleFormControlInput1" class="form-label">
                                 <h6>Nombre*</h6>
                             </label>
                             <input type="#" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Ej: My name is di-di-di-diego">
+                                placeholder="Ej: My name is di-di-di-diego" name="first_name">
                         </div>
                         <div class="col-6">
                             <label for="exampleFormControlInput1" class="form-label">
                                 <h6>Apellido*</h6>
                             </label>
                             <input type="#" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Ej: Rodriguez">
+                                placeholder="Ej: Rodriguez" name="last_name">
                         </div>
                     </div>
                     <div class="py-1">
@@ -78,34 +79,34 @@
                             <h6>Nombre de compañia(opcional)*</h6>
                         </label>
                         <input type="documento" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Ej: El Burro alegre">
+                            placeholder="Ej: El Burro alegre" name="company_name">
                     </div>
                     <div class="py-1">
                         <label for="exampleFormControlInput1" class="form-label">
                             <h6>Dirección de Calle*</h6>
                         </label>
                         <input type="documento" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Calle - Altura">
+                            placeholder="Calle - Altura" name="address">
                     </div>
                     <div class="py-1">
                         <label for="exampleFormControlInput1" class="form-label">
                             <h6>Estado*</h6>
                         </label>
                         <input type="documento" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Ej: Sinaloa">
+                            placeholder="Ej: Sinaloa" name="state">
                     </div>
                     <div class="py-1">
                         <label for="exampleFormControlInput1" class="form-label">
                             <h6>País*</h6>
                         </label>
                         <input type="documento" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Ej: México">
+                            placeholder="Ej: México" name="country">
                         <div class="py-1">
                             <label for="exampleFormControlInput1" class="form-label">
                                 <h6>Móvil*</h6>
                             </label>
                             <input type="documento" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Ej: cinco cinco cincorriente">
+                                placeholder="Ej: cinco cinco cincorriente" name="phone">
                         </div>
                     </div>
                     <div class="py-1">
@@ -113,7 +114,7 @@
                             <h6>Email*</h6>
                         </label>
                         <input type="documento" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Ej: elrincóndelvago@gmail.com">
+                            placeholder="Ej: elrincóndelvago@gmail.com" name="email">
                     </div>
                 </div>
 
@@ -125,7 +126,7 @@
                         </div>
                         <div class="col-10">
                             <small class="text-secondary">{{x['parrafo']}}</small>
-                            <h6>{{x['price']}} X 1</h6>
+                            <h6>{{x['price']}} X {{x['cantidad']}}</h6>
                             <h6>Funciona la vaina</h6>
                         </div>
                     </div>
@@ -152,15 +153,15 @@
                     </div>
                     <div class="row">
                         <div class="col d-grid gap-1">
-                            <button style="background-color: #607d8b ;" type="button" class="btn btn-secondary btn-">
-                                <h4>Ir a Pagar</h4>
+                            <button style="background-color: #607d8b ;" type="submit" class="btn btn-secondary btn-">
+                                Ir a Pagar
                             </button>
                         </div>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </form>
         </div>
     </section>
     <section>
