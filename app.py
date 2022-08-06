@@ -115,10 +115,14 @@ def check_view():
     # operación para sumar iva al total en este caso 19% de iva.
     total = subtotal * 1.19
 
+    # creacion de mensaje de error paso 1
+    mensaje = request.args.get('mensaje')
+
     return render_template("checkout.html",
                            cartproducts=cartproducts,
                            subtotal=subtotal,
                            total=total,
+                           mensaje=mensaje
                            )
 
 
@@ -131,9 +135,6 @@ def remove_to_cart(id):
 
 @app.route("/order/create")
 def order_created_view():
-    user = session.get('id')
-    cartproducts = list(db.cart.find({'user_id': user}))
-
     # nombre del input documento del checkout.html
     document = request.args.get('document')
     firstName = request.args.get('first_name')
@@ -145,6 +146,25 @@ def order_created_view():
     phone = request.args.get('phone')
     email = request.args.get('email')
     total = request.args.get('total')
+   #### #paso 2 creacion mensaje de error#####
+    if document == "" or firstName == "" or lastName == "" or companyName == "" or address == "" or state == "" or country == "" or phone == "" or email == "" or total == "":
+        return redirect('/checkout?mensaje=tienes campos vacios')
+###################################################
+     # paso 1 error emai l#
+    emailSplitted = email.split('@')
+    #email = 'hola@gmail.com'
+    # emailSplitted = email.split('@') --> ['hola', 'gmail.com']
+
+    # emailSplitted[0] --> 'hola'
+    # emailSplitted[1] --> 'gmail.com'
+    # paso 2 error email #
+    if len(emailSplitted) != 2 or emailSplitted[1] != 'gmail.com':
+
+        return redirect('/checkout?mensaje=la direccion de correo no es valida')
+
+    user = session.get('id')
+    cartproducts = list(db.cart.find({'user_id': user}))
+
     # pedido es un diccionario que tiene el diccionario client dentro.
     pedido = {}
     pedido['client'] = {
