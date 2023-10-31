@@ -162,8 +162,8 @@ def order_created_view():
 
         return redirect('/checkout?mensaje=la direccion de correo no es valida')
 
-    user = session.get('id')
-    cartproducts = list(db.cart.find({'user_id': user}))
+    userId = session.get('user_id')
+    cartproducts = list(db.cart.find({'user_id': userId}))
 
     # pedido es un diccionario que tiene el diccionario client dentro.
     pedido = {}
@@ -178,14 +178,14 @@ def order_created_view():
         'phone': phone,
         'email': email
     }
-    pedido['user_id'] = user
+    pedido['user_id'] = userId
     pedido['cart'] = cartproducts
     pedido['total'] = total
     orderCreated = db.orders.insert_one(pedido)
     orderId = orderCreated.inserted_id
 
     # borrar todos los productos del carrito DEL USUARIO
-    db.cart.delete_many({'user_id': user})
+    db.cart.delete_many({'user_id': userId})
 
     return redirect('/order/' + str(orderId))
 
