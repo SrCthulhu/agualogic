@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon"
-        href="https://i.pinimg.com/favicons/646a98600556e66fc882931fb511274bb8c961f93caa913e1ca12d19.png?899f6712a5a831f6f200ccca42cbe839">
+    <link rel="icon" href="https://www.agualogic.com/wp-content/uploads/2019/07/cropped-icon-32x32.png">
     <title>Cart | Agualogic</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -17,20 +16,22 @@
         <div class="container">
             <div class="mx-5 row">
                 <div class="col-6">
-                    <a class="text-decoration-none" href="/">
+                    <a class="text-decoration-none" href="/" class="text-decoration-none">
                         <img class="img-fluid"
                             src="https://www.agualogic.com/wp-content/uploads/2021/04/logo_reducido.png" alt=""
                             srcset="">
                     </a>
                 </div>
                 <div class="py-2 col-6 text-end">
-                    <a href="https://api.whatsapp.com/send/?phone=573022868697&text&app_absent=0">
+                    <a href="https://api.whatsapp.com/send/?phone=573022868697&text&app_absent=0"
+                        class="text-decoration-none">
                         <img class="px-1 img-fluid"
                             src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-2.png" alt="" width="40"
                             height="40" srcset="">
                     </a>
 
-                    <a href="https://www.instagram.com/accounts/login/?next=/agualogicfiltro/">
+                    <a href="https://www.instagram.com/accounts/login/?next=/agualogicfiltro/"
+                        class="text-decoration-none">
                         <img class="px-1 img-fluid"
                             src="https://www.agualogic.com/wp-content/uploads/2019/07/icono-1.png" alt="" width="40"
                             height="40" srcset="">
@@ -55,7 +56,8 @@
                         </div>
                         <div class="col-6">
                             <h6>{{a['parrafo']}}</h6>
-                            <h6>{{a['price']}} X {{a['cantidad']}}</h6>
+                            <h6 class="precio">{{a['price']}} X</h6>
+                            <h6 class="cantidad">{{a['cantidad']}}</h6>
                         </div>
                         <div class="col-3">
                             <a href="/remove/{{a['_id']}}" type="button" class="btn btn-danger">X</a>
@@ -65,28 +67,33 @@
                 </div>
                 <div class="col-6">
                     <h4>Resumen</h4>
-                    <h2>Subtotal: 0</h2>
+                    <h2 id="subtotal">Subtotal: 0</h2>
 
-                    <small>En el siguiente paso se calculan los costos de envío segun su dirección.</small>
+                    <small>En el siguiente paso se calculan los costos de envío según su dirección.</small>
                     <div class="d-grid gap-2">
                         <a href="/checkout" style="background-color: #607d8b ;" type="button"
                             class="btn btn-secondary">Continuar</a>
 
-                        <a href="/products" style="background-color: #ccc ;" type="button" class="btn btn-secondary">Ver
-                            todos nuestros productos</a>
+                        <a href="/category/filtro" type="button" class="btn "
+                            style="background-color: #ccc; color: #666;">Ver todos nuestros productos
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="row pt-5">
+            <div class="row">
                 <div class="col-12">
-                    <h4 class="px-5">También te puede interesar</h4>
+                    <h5 class="pb-3" style="margin-left: 3.8rem;">También te puede interesar</h5>
                 </div>
                 {% for m in masvendidos %}
-                <div class="col-3 text-center">
-                    <img style="border-radius: 20px;" src="{{m['img']}}" width="209.78" height="184.13" alt=""
-                        srcset="">
-                    <h4>{{m['price']}}</h4>
-                    <small class="text-secondary">{{m['parrafo']}}</small>
+                <div class="col-3 pb-3 mx--1">
+                    <a class="text-decoration-none" href="/producto/detalle/{{m['_id']}}">
+                        <img class="mb-3"
+                            style="border-radius: 20px; display: block;  margin: 0 auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);"
+                            src="{{m['img']}}" width="180" height="164" alt="" srcset="">
+                        <div class="div" style="padding-left: 4rem;">
+                            <h5 style="color: rgb(27, 27, 27);">{{m['price']}}</h5>
+                            <small class="text-secondary" style="margin-top: -0.5rem;">{{m['parrafo']}}</small>
+                        </div>
                     </a>
                 </div>
                 {% endfor %}
@@ -96,24 +103,56 @@
     <section>
         <div class="container">
             <div class="text-center py-4">
-                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Inicio</a>
-                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Nuestros Filtros</a>
-                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Q&A</a>
-                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Conócenos</a>
-                <a class="px-2 text-decoration-none" style="font-size: 1.1rem;" href="#">Contacto</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem; color: #2d79b8;" href="#">Inicio</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem; color: #2d79b8" href="#">Nuestros
+                    Filtros</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem; color: #2d79b8" href="#">Q&A</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem; color: #2d79b8" href="#">Conócenos</a>
+                <a class="px-2 text-decoration-none" style="font-size: 1.1rem; color: #2d79b8" href="#">Contacto</a>
             </div>
             <div class="row-12">
                 <div class="col text-center">
-                    <p>(+57) 350 446 6093</p>
-                    <p>(+57) 300 258 9820</p>
-                    <p>(+57) 320 444 1550</p>
+                    <small>(+57) 350 446 6093</small><br>
+                    <small>(+57) 300 258 9820</small><br>
+                    <small>(+57) 320 444 1550</small>
                 </div>
                 <div class="col text-center">
-                    <small>© 2022 Agualogic</small>
+                    <small style="font-weight: bold;">© 2022 Agualogic</small>
                 </div>
             </div>
         </div>
     </section>
+    <script>
+        console.log("Prueba de consola");
+        // Obtiene todos los elementos con la clase "cantidad" (donde está la cantidad de cada producto) y precio (donde está el precio de cada producto)
+        const cantidadElements = document.querySelectorAll('.cantidad');
+        const precioElements = document.querySelectorAll('.precio');
+
+        // Función para calcular el subtotal
+        function calcularSubtotal() {
+            let subtotal = 0;
+
+            for (let i = 0; i < cantidadElements.length; i++) {
+                const cantidad = parseInt(cantidadElements[i].textContent); // Convierte la cantidad a un número
+                const precioText = precioElements[i].textContent;
+
+                // Elimina caracteres no numéricos (como "$" y comas) y convierte el precio a un número
+                const precio = parseFloat(precioText.replace(/[^0-9.]/g, ''));
+
+                subtotal += cantidad * precio;
+            }
+
+            // Actualiza el elemento con el id "subtotal" en el HTML
+            document.getElementById('subtotal').textContent = `Subtotal: $${subtotal.toFixed(2)}`;
+        }
+
+
+        // Llama a la función para calcular el subtotal cuando la página se carga y cuando se cambia la cantidad
+        window.addEventListener('load', calcularSubtotal);
+        console.log(cantidadElements);
+        console.log(precioElements);
+
+    </script>
 </body>
 
 </html>

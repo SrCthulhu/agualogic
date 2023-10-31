@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, session, request
+from flask import Flask, render_template, redirect, session, request, send_from_directory
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
@@ -43,8 +43,16 @@ def producto_view(id):
     masvendidos = list(db.productsfiltros.find({'top': "1"}))
     # Estructura para Redireccionar por categoria de un elemento con id.
     productsfiltros = list(db.productsfiltros.find({'_id': ObjectId(id)}))
-    return render_template("carrito.html", productsfiltros=productsfiltros, masvendidos=masvendidos)
+    return render_template("inner_product_detail.html", productsfiltros=productsfiltros, masvendidos=masvendidos)
 
+#@app.route("/update-counter", methods=["POST"])
+### update_counter():
+ #   data = request.get_json()
+   # new_count = data.get("count")
+
+    # Realiza las operaciones necesarias para actualizar el contador en el servidor
+
+   # return "Contador actualizado", 200
 
 @app.route("/add/<id>")
 def add_product_to_cart(id):
